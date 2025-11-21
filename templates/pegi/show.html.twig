@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pegi{% endblock %}
+
+{% block body %}
+    <h1>Pegi</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pegi.id }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ pegi.Age }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ pegi.Description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pegi_index') }}">back to list</a>
+
+    <a href="{{ path('app_pegi_edit', {'id': pegi.id}) }}">edit</a>
+
+    {{ include('pegi/_delete_form.html.twig') }}
+{% endblock %}
