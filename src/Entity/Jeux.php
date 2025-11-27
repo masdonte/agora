@@ -26,6 +26,15 @@ class Jeux
     #[ORM\ManyToOne(inversedBy: 'jeuxes')]
     private ?Pegi $idPegi = null;
 
+    #[ORM\ManyToOne(inversedBy: 'jeuxes')]
+    private ?Marque $marque = null;
+
+    #[ORM\ManyToOne(inversedBy: 'jeuxes')]
+    private ?Genre $genre = null;
+
+    #[ORM\ManyToOne(inversedBy: 'jeuxes')]
+    private ?Plateforme $plateforme = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +84,42 @@ class Jeux
     public function setIdPegi(?Pegi $idPegi): static
     {
         $this->idPegi = $idPegi;
+
+        return $this;
+    }
+
+    public function getMarque(): ?Marque
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(?Marque $marque): static
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?Genre $genre): static
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getPlateforme(): ?Plateforme
+    {
+        return $this->plateforme;
+    }
+
+    public function setPlateforme(?Plateforme $plateforme): static
+    {
+        $this->plateforme = $plateforme;
 
         return $this;
     }
