@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TournoiRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,12 @@ class Tournoi
 
     #[ORM\ManyToOne(inversedBy: 'tournois')]
     private ?CatTournois $categorie = null;
+
+    /**
+     * @var Collection<int, Participant>
+     */
+    #[ORM\ManyToMany(targetEntity: Participant::class, inversedBy: 'tournois')]
+    private Collection $participants;
 
     public function getId(): ?int
     {
@@ -69,6 +77,7 @@ class Tournoi
     public function __construct()
     {
         $this->dateCreation = new \DateTime('now');
+        $this->participants = new ArrayCollection();
     }
 
     public function getCategorie(): ?CatTournois
@@ -79,6 +88,30 @@ class Tournoi
     public function setCategorie(?CatTournois $categorie): static
     {
         $this->categorie = $categorie;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Participant>
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(Participant $participant): static
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants->add($participant);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participant $participant): static
+    {
+        $this->participants->removeElement($participant);
+
         return $this;
     }
 
