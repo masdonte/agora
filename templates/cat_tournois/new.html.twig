@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CatTournois{% endblock %}
+
+{% block body %}
+    <h1>Create new CatTournois</h1>
+
+    {{ include('cat_tournois/_form.html.twig') }}
+
+    <a href="{{ path('app_cat_tournois_index') }}">back to list</a>
+{% endblock %}
