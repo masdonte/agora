@@ -29,6 +29,9 @@ class Jeux
     #[ORM\ManyToOne(inversedBy: 'jeuxes')]
     private ?Marque $marque = null;
 
+    #[ORM\ManyToOne(inversedBy: 'jeuxes')]
+    private ?Genre $genre = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Jeux
     public function setMarque(?Marque $marque): static
     {
         $this->marque = $marque;
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?Genre $genre): static
+    {
+        $this->genre = $genre;
 
         return $this;
     }
