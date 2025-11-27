@@ -32,6 +32,9 @@ class Jeux
     #[ORM\ManyToOne(inversedBy: 'jeuxes')]
     private ?Genre $genre = null;
 
+    #[ORM\ManyToOne(inversedBy: 'jeuxes')]
+    private ?Plateforme $plateforme = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Jeux
     public function setGenre(?Genre $genre): static
     {
         $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getPlateforme(): ?Plateforme
+    {
+        return $this->plateforme;
+    }
+
+    public function setPlateforme(?Plateforme $plateforme): static
+    {
+        $this->plateforme = $plateforme;
 
         return $this;
     }
