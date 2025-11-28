@@ -26,15 +26,15 @@ class JeuxType extends AbstractType
             ])
             ->add('marque', EntityType::class, [
                 'class' => Marque::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nomMarque',
             ])
             ->add('genre', EntityType::class, [
                 'class' => Genre::class,
-                'choice_label' => 'id',
+                'choice_label' => 'libGenre',
             ])
             ->add('plateforme', EntityType::class, [
                 'class' => Plateforme::class,
-                'choice_label' => 'id',
+                'choice_label' => 'lib',
             ])
         ;
     }
