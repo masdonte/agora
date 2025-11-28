@@ -1,53 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Jeux index
-{% endblock %}
+{% block title %}Gestion des Jeux{% endblock %}
 
 {% block body %}
-	<h1>Jeux index</h1>
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Nom</th>
-				<th>Prix</th>
-				<<th>DateParution</th>
-<th>Pegi</th>
-<th>Marque</th>
-<th>Genre</th>
-<th>Plateforme</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for jeux in jeuxes %}
-<tr>
-	<td>{{ jeux.id }}</td>
-	<td>{{ jeux.nom }}</td>
-	<td>{{ jeux.prix}}</td>
-	<td>{{ jeux.dateParution ? jeux.dateParution|date('Y-m-d') : '' }}</td>
-	<td>{{ jeux.idPegi}}</td>
-	<td>{{ jeux.marque}}</td>
-	<td>{{ jeux.genre}}</td>
-	<td>{{ jeux.plateforme}}</td>
-</tr>
-
-
-					<td>
-						<a href="{{ path('app_jeux_show', {'id': jeux.id}) }}">show</a>
-						<a href="{{ path('app_jeux_edit', {'id': jeux.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="5">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-
-	<a href="{{ path('app_jeux_new') }}">Create new</a>
+	<!-- page start-->
+	<div class="col-sm-12">
+		<section class="panel">
+			<div class="chat-room-head">
+				<h3>
+					<i class="fa fa-angle-right"></i>
+					Gérer les jeux</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-striped table-advance table-hover">
+					<thead>
+						<tr class="tableau-entete">
+							<th>
+								<i class="fa fa-hashtag"></i>
+								ID</th>
+							<th>
+								<i class="fa fa-gamepad"></i>
+								Nom</th>
+							<th>
+								<i class="fa fa-euro"></i>
+								Prix</th>
+							<th>
+								<i class="fa fa-calendar"></i>
+								Date Parution</th>
+							<th>
+								<i class="fa fa-child"></i>
+								PEGI</th>
+							<th>
+								<i class="fa fa-building"></i>
+								Marque</th>
+							<th>
+								<i class="fa fa-tags"></i>
+								Genre</th>
+							<th>
+								<i class="fa fa-desktop"></i>
+								Plateforme</th>
+							<th>
+								<i class="fa fa-cogs"></i>
+								Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for jeux in jeuxes %}
+							<tr>
+								<td>{{ jeux.id }}</td>
+								<td>{{ jeux.nom }}</td>
+								<td>{{ jeux.prix }} €</td>
+								<td>{{ jeux.dateParution ? jeux.dateParution|date('d/m/Y') : 'N/A' }}</td>
+								<td>{{ jeux.idPegi }}</td>
+								<td>{{ jeux.marque }}</td>
+								<td>{{ jeux.genre }}</td>
+								<td>{{ jeux.plateforme }}</td>
+								<td>
+									<a href="{{ path('app_jeux_show', {'id': jeux.id}) }}">
+										<button class="btn btn-info btn-xs" title="Voir">
+											<i class="fa fa-eye"></i>
+										</button>
+									</a>
+									<a href="{{ path('app_jeux_edit', {'id': jeux.id}) }}">
+										<button class="btn btn-warning btn-xs" title="Modifier">
+											<i class="fa fa-pencil"></i>
+										</button>
+									</a>
+									<a href="{{ path('app_jeux_delete', {'id': jeux.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce jeu ?');">
+										<button class="btn btn-danger btn-xs" title="Supprimer">
+											<i class="fa fa-trash"></i>
+										</button>
+									</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="9">Aucun jeu enregistré en base de données</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<a href="{{ path('app_jeux_new') }}">
+					<button class="btn btn-success">
+						<i class="fa fa-plus"></i>
+						Ajouter un jeu
+					</button>
+				</a>
+			</div>
+			<!-- fin div panel-body-->
+		</section>
+		<!-- fin section jeux-->
+	</div>
+	<!--fin div col-sm-12-->
 {% endblock %}
-
-
