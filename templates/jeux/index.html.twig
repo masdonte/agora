@@ -1,39 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Jeux index{% endblock %}
+{% block title %}Jeux index
+{% endblock %}
 
 {% block body %}
-    <h1>Jeux index</h1>
+	<h1>Jeux index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>DateParution</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for jeux in jeuxes %}
-            <tr>
-                <td>{{ jeux.id }}</td>
-                <td>{{ jeux.nom }}</td>
-                <td>{{ jeux.prix }}</td>
-                <td>{{ jeux.dateParution ? jeux.dateParution|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_jeux_show', {'id': jeux.id}) }}">show</a>
-                    <a href="{{ path('app_jeux_edit', {'id': jeux.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Prix</th>
+				<<th>DateParution</th>
+<th>Pegi</th>
+<th>Marque</th>
+<th>Genre</th>
+<th>Plateforme</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for jeux in jeuxes %}
+				<tr>
+					<td>{{ jeux.id }}</td>
+					<td>{{ jeux.nom }}</td>
+					<td>{{ jeux.prix}}</td>
+					<td>{{ jeux.dateParution ? jeux.dateParution|date('Y-m-d') : '' }}</td>
+					<td>{{ jeux.idPegi}}</td>
+					<td>{{ jeux.marque}}</td>
+					<td>{{ jeux.genre}}</td>
+					<td>{{ jeux.plateforme}}</td>
+					<td>
+						<a href="{{ path('app_jeux_show', {'id': jeux.id}) }}">show</a>
+						<a href="{{ path('app_jeux_edit', {'id': jeux.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_jeux_new') }}">Create new</a>
+	<a href="{{ path('app_jeux_new') }}">Create new</a>
 {% endblock %}
+
+
