@@ -138,3 +138,37 @@ le développement d'un site web.
 # Mission 1 
 Afin de passer totalement le projet sous Symfony, nous avons utilisé le composant Doctrine, qui est un logiciel d'ORM.
 
+On a du l'installer avec composer graçe à cette commande dans le terminal du projet : 
+composer require symfony/orm-pack
+
+
+Nous avons ensuite créer une base de donnée à travers doctrine dans le php graçe à cette commande : 
+php bin/console doctrine:data:create
+Avec cet commande, une nouvelle base de donnée est creer dans la doctrine à travers symfony.
+
+Il a fallut ensuite reconfigurer le .env et remplacer la database_url : 
+![alt text](image.png)
+
+On peut donc constater que nous avons rajouter le nom de la base de donnée qui est agoraorm et le mot de passe et l'identifiant pour accéder à la base de donnée.
+
+
+Il a fallut créer les entités dans la base de donnée directement dans le terminal du projet dans le php. Pour créer une entité il faut utiliser cet commande là : 
+php/bin/console make:entity 
+![
+](image-1.png)
+ ensuite nous donnant le nom de l'entité, avec ses spécifications ( le nom de la table, le type...)
+ 
+ Suite à cela, symfony va générer le fichier suivant : 
+ src/Repository/GenreRepository.php 
+ ![alt text](image-2.png)
+
+ la doctrine ajoutera automatiquement dans la base de donnée l'entité avec sa table et ses spécifications mais il faut faire une commande pour que cela soi pousser.
+
+Il faut ensuite lancer la migration :
+php bin/console make:migration 
+Qui sert à pousser vers les entités créer dans la base de donnée. Qui créer un fichier migration.
+![alt text](image-3.png)
+Il faut refaire une nouvelle commande de migration pour etre sur que cela est bien pousser dans la base de donnée : 
+php bin/console doctrine:migrations:migrate
+
+
