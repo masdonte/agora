@@ -18,9 +18,10 @@ class TournoiType extends AbstractType
             ->add('libelle')
             ->add('date')
             ->add('dateCreation')
-            ->add('categorie', EntityType::class, [
-                'class' => CatTournois::class,
-                'choice_label' => fn(Participant $p) => $p->getPrenom() . ' ' . $p->getNom(),
+            ->add('categorie')
+            ->add('participants', EntityType::class, [
+                'class' => Participant::class,
+                'choice_label' => fn(Participant $p) => $p->getNom().' '.$p->getPrenom(),
                 'multiple' => true,
                 'expanded' => false,
                 'by_reference' => false,
