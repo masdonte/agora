@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Genre;
 use App\Form\GenreType;
+use App\Entity\Jeu;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Repository\GenreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

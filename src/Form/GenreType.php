@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Genre;
-use App\Entity\Jeu;
+use App\Entity\Jeux;  // Changez Jeu en Jeux
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,6 +15,13 @@ class GenreType extends AbstractType
     {
         $builder
             ->add('libGenre')
+            ->add('jeuxes', EntityType::class, [
+                'class' => Jeux::class,  // Changez Jeu en Jeux
+                'choice_label' => 'nom',
+                'multiple' => true,
+                'expanded' => false,
+                'by_reference' => false,
+            ])
         ;
     }
 
