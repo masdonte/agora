@@ -14,9 +14,14 @@
 					<thead>
 						<tr class="tableau-entete">
 							<th>
-								<i class="fa fa-bullhorn"></i>Id</th>
+								<i class="fa fa-bullhorn"></i>Id
+							</th>
 							<th>
-								<i class="fa fa-bookmark"></i>Libelle</th>
+								<i class="fa fa-bookmark"></i>Libelle
+							</th>
+							<th>
+								<i class="fa fa-gamepad"></i>Tournois
+							</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -25,6 +30,15 @@
 							<tr>
 								<td>{{ cat_tournoi.id }}</td>
 								<td>{{ cat_tournoi.libelle }}</td>
+								<td>
+									{% if cat_tournoi.tournois is not empty %}
+										{% for tournoi in cat_tournoi.tournois %}
+											<span class="badge bg-info text-dark">{{ tournoi.libelle }}</span>
+										{% endfor %}
+									{% else %}
+										<em>Aucun</em>
+									{% endif %}
+								</td>
 								<td>
 									<a href="{{ path('app_cat_tournois_show', {'id': cat_tournoi.id}) }}">
 										<button class="btn btn-primary btn-xs">

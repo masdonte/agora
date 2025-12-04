@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\CatTournois;
 use App\Form\CatTournoisType;
+use App\Entity\Tournoi;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Repository\CatTournoisRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

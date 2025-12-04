@@ -3,9 +3,26 @@
 {% block title %}New CatTournois{% endblock %}
 
 {% block body %}
-    <h1>Create new CatTournois</h1>
-
-    {{ include('cat_tournois/_form.html.twig') }}
-
-    <a href="{{ path('app_cat_tournois_index') }}">back to list</a>
+<!-- page start -->
+<div class="col-sm-8">
+    <section class="panel">
+        <div class="chat-room-head">
+            <h3>
+                <i class="fa fa-angle-right"></i>
+                Créer une catégorie de tournois</h3>
+        </div>
+        <div class="panel-body">
+            <h1>Create new Catégorie Tournois</h1>
+            {{ include('cat_tournois/_form.html.twig') }}
+            <a href="{{ path('app_cat_tournois_index') }}">
+                <button class="btn btn-primary btn-xs">
+                    <i class="fa fa-share"></i>
+                </button>
+            </a>
+        </div>
+        <!-- fin div panel-body-->
+    </section>
+    <!-- fin section tournois-->
+</div>
+<!--fin div col-sm-8-->
 {% endblock %}
