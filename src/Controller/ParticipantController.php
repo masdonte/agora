@@ -18,7 +18,7 @@ final class ParticipantController extends AbstractController
     public function index(ParticipantRepository $participantRepository): Response
     {
         return $this->render('participant/index.html.twig', [
-            'participants' => $participantRepository->findAll(),
+            'participants' => $participantRepository->findAll(), 'menuActif' => 'Tournois',
         ]);
     }
 
