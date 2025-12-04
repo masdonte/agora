@@ -21,6 +21,10 @@
 							<th>
 								<i class="fa fa-bookmark"></i>
 								Libellé</th>
+							<th>
+								<i class="fa fa-gamepas"></i>
+								Jeux
+							</th>
 							<th>actions</th>
 						</tr>
 					</thead>
@@ -29,6 +33,14 @@
 							<tr>
 								<td>{{ genre.id }}</td>
 								<td>{{ genre.libGenre }}</td>
+								<td>
+									{% if genre.jeuxes is not empty %}
+										{% for jeu in genre.jeuxes %}
+											<span class="badge bg-info text-dark">{{ jeu.nom }}</span>
+										{% endfor %}
+									{% else %}
+										<em>Aucun</em>
+									{% endif %}
 								<td>
 									<a href="{{path('app_genre_show',{'id': genre.id})}}">
 										<button class="btn btn-primary btn-xs">
