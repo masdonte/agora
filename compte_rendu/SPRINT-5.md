@@ -146,6 +146,10 @@ Nous avons ensuite créer une base de donnée à travers doctrine dans le php gr
 php bin/console doctrine:data:create
 Avec cet commande, une nouvelle base de donnée est creer dans la doctrine à travers symfony.
 
+On va aussi créer un  nouveau compte dans le base de donnée : 
+![alt text](image-15.png)
+qui aura comme identifiant adminagora et comme mot de passe Agora1234! On lui accordera différent droit, comme la suppression, modifier, ajouter...etc.
+
 Il a fallut ensuite reconfigurer le .env et remplacer la database_url : 
 ![alt text](image.png)
 
@@ -161,6 +165,9 @@ php/bin/console make:entity
  Suite à cela, symfony va générer le fichier suivant : 
  src/Repository/GenreRepository.php 
  ![alt text](image-2.png)
+ Voici ce qui contient dans ce fichier : 
+ ![alt text](image-12.png)
+ Un repository est une classe qui permet de faire des requêtes sur une table (par l'intérmédiaire de l'entité associée) de la base de données.
 
  la doctrine ajoutera automatiquement dans la base de donnée l'entité avec sa table et ses spécifications mais il faut faire une commande pour que cela soi pousser.
 
@@ -170,5 +177,70 @@ Qui sert à pousser vers les entités créer dans la base de donnée. Qui créer
 ![alt text](image-3.png)
 Il faut refaire une nouvelle commande de migration pour etre sur que cela est bien pousser dans la base de donnée : 
 php bin/console doctrine:migrations:migrate
+![alt text](image-13.png)
+![alt text](image-14.png)
+La commande a bien pousser dans la base de donnée.
+La table genre a bien été rajouter automatiquement.
 
+# Mission 3 : mise en place d'une relation many to one avec le composant Doctrine
 
+Dans cet mission, nous avons donc créer les relations entre les entités. 
+
+Pour cela, nous avons donc créer une entité tournoi : 
+php bin/console make:entity
+![alt text](image-4.png)
+![alt text](image-5.png)
+Lors de la création d'une entité, 2 fichiers sont créer : 
+src/Entity/Tournoi.php
+src/Repository/TournoiRepository.php 
+
+Toute les spécifications de l'entité est demander : qu'elle est son nom, le nom de la table qui seront comprit à l'intérieur, la propiété...etc
+Le fichier tournoi est créer dans le src/entity/tournoi.php
+
+Nous allons ensuite mettre en relation tournois et catégorie tournois. Pour cela, nous allons recréer une entité : 
+php bin/console make:entity CatTournois
+![alt text](image-6.png)
+Avec toutes ces spécifications.
+Le fichier a été créer dans src/Entity/CatTournois.php
+
+A partit de là, nous allons donc créer la relation entre tournois et catégorie tournois, pour cela nous allons relancer la commande php bin/console make:entity
+Lorsque l'on va choisir le type, nous allons écrire relation : 
+![alt text](image-8.png)
+ Qui ensuite nous demandera qui soit en relation avec qu'elle entité qu'on dira : CatTournois. 
+ ![alt text](image-9.png)
+Par la suite, il faudra choisir le type de relation : 
+![alt text](image-7.png)
+Ici, nous allons choisir ManyToOne, qui veut dire que catégorie tournois et plusieurs tournois.
+ Les fichier Tournoi.php et catTournois.php on été remise à niveau et les relations on été rajouter  : 
+ ![alt text](image-10.png)
+ On peut voir à la ligne 27 dans la fichier tournoi.php que l'ORM a bien ajouté la ligne qui est en relation avec CatTournois : 
+ #[ORM\ManyToOne(inversebBy: 'tournois')]
+ private ?carTournois $categorie = null;
+
+Dans le fichier CatTournoi.php de meme : 
+![alt text](image-11.png)
+#[ORM\OneToMany(targetEntity: Tournoi::class, mappedBy: 'categorie)]
+private Collection $tournois;
+
+On peut constater que dans les deux fichiers, tous les spécifications des tables sont détaillés, c'est-à-dire que toutes les commandes qu'on a saisi dans le terminal , on les retrouve dans ce fichier.
+
+Un attribut a aussi été rajouté avec son getter et son setter qui ne désigne pas un id mais un objet de la classe Categorie dans le fichier tournoi.
+
+Dans le fichier catTournois, 3 méthodes ont été ajoutées getTournois(), addTournoi(), removeT(). 
+
+A chaque fin de créationd d'entité, il faut toujours faire la migration pour pouvoir pousser dans la base de donnée , alors il faut refaire ses commandes : 
+php bin/console make:migration 
+php bin/console doctrine:migrations:migrate
+
+Nous allons ensuite faire la génération du CRUD , qui sera la vue, dans l'interface dans le site internet pour tournoi et catégorie tournoi, pour cela , une commande à utiliser qui est : 
+php bin/console make:crud Tournoi
+
+Qui créera le controller et toutes les fichiers de tournoi : 
+![alt text](image-16.png)
+
+La meme chose pour CatTournois : 
+![alt text](image-17.png)
+
+Lorsqu'on se rend dans le site internet, l'interface de tournois et catégorie tournoi on été créer : 
+![alt text](image-18.png)
+Toutes les attributs qu'on a créer 
