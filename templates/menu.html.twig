@@ -30,20 +30,20 @@
 			<link href="{{ asset('assets/css/styleAgora.css') }}" rel="stylesheet">
 		{% endblock %}
 		<!-- =======================================================
-												Template Name: Dashio
-												Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-												Author: TemplateMag.com
-												License: https://templatemag.com/license/
-												======================================================= -->
+														Template Name: Dashio
+														Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+														Author: TemplateMag.com
+														License: https://templatemag.com/license/
+														======================================================= -->
 	</head>
 	<body>
 		<section id="container">
 			<!--
-																		**************************************************************************************
-																		********************************************************************
-																		TOP BAR CONTENT & NOTIFICATIONS
-																		**************************************************************************************
-																		********************************************************************* -->
+																					**************************************************************************************
+																					********************************************************************
+																					TOP BAR CONTENT & NOTIFICATIONS
+																					**************************************************************************************
+																					********************************************************************* -->
 			<!--header start-->
 				<header class="header black-bg"> <div class="sidebar-toggle-box">
 					<div class="fa fa-bars tooltips" data-placement="right" data-original- title="Toggle Navigation"></div>
@@ -72,21 +72,21 @@
 			</header>
 			<!--header end-->
 			<!-- **************************************************************************************
-													 ********************************************************************
-													 MAIN SIDEBAR MENU
-													 **************************************************************************************
-													 ********************************************************************* -->
+																 ********************************************************************
+																 MAIN SIDEBAR MENU
+																 **************************************************************************************
+																 ********************************************************************* -->
 			{% block menu %}
 				{% if (app.session.has('idUtilisateur') ) %}
 					{{ include('menu.html.twig') }}
 				{% endif %}
 			{% endblock %}
 			<!--
-																		**************************************************************************************
-																		********************************************************************
-																		MAIN CONTENT
-																		**************************************************************************************
-																		********************************************************************* -->
+																					**************************************************************************************
+																					********************************************************************
+																					MAIN CONTENT
+																					**************************************************************************************
+																					********************************************************************* -->
 			<section id="main-content">
 				<section class="wrapper"> {% block central %}{% endblock %}
 					</section>
@@ -97,14 +97,14 @@
 			<!-- js placed at the end of the document so the pages load faster -->
 			<script src="{{ asset('assets/lib/jquery/jquery.min.js') }}"></script>
 			<!-- pour
-																		dérouler menu -->
+																					dérouler menu -->
 			<script src="{{ asset('assets/lib/bootstrap/js/bootstrap.min.js') }}"></script>
 			<script class="include" type="text/javascript" src="{{ asset('assets/lib/jquery.dcjqaccordion.2.7.js') }}"></script>
 			<!-- pour dérouler menu
-																		-->
+																					-->
 			<script src="{{ asset('assets/lib/jquery.scrollTo.min.js') }}"></script>
 			<!-- pour
-																		dérouler menu -->
+																					dérouler menu -->
 			<!--common script for all pages-->
 			<script src="{{ asset('assets/lib/common-scripts.js') }}"></script>
 			<!--script pour le calendrier-->
@@ -117,11 +117,11 @@
 	</html>
 
 	<!--
-					**************************************************************************************
-					********************************************************************
-					MAIN SIDEBAR MENU
-					**************************************************************************************
-					********************************************************************* -->
+						**************************************************************************************
+						********************************************************************
+						MAIN SIDEBAR MENU
+						**************************************************************************************
+						********************************************************************* -->
 	<!--sidebar start-->
 	<aside>
 		<div
@@ -195,55 +195,47 @@
 						</li>
 					</ul>
 				</li>
-				<li class="sub-menu">
-					<a {% if menuActif is defined and menuActif == 'Membres' %} class="active" {% endif %} href="javascript:;">
-						<i class="fa fa-user-md"></i>
-						<span>Membres</span>
-					</a>
-					<ul class="sub">
-						<li>
-							<a href="{{path('accueil')}}">sous-menu 1</a>
-						</li>
-						<li>
-							<a href="{{path('accueil')}}">sous-menu 2</a>
-						</li>
-						<li>
-							<a href="{{path('accueil')}}">sous-menu 3</a>
-						</li>
-						<li>
-							<a href="{{path('accueil')}}">sous-menu 4</a>
-						</li>
-						<li>
-							<a href="{{path('accueil')}}">sous-menu 5</a>
-						</li>
-					</ul>
-				</li>
-				<li class="sub-menu">
-					<a {% if menuActif is defined and menuActif == 'Intervenants' %} class="active" {% endif %} href="javascript:;">
-						<i class="fa fa-smile-o"></i>
-						<span>Intervenants</span>
-					</a>
-					<ul class="sub">
-						<li>
-							<a href="{{path('accueil')}}">sous-menu 1</a>
-						</li>
-						<li>
-							<a href="{{path('accueil')}}">sous-menu 2</a>
-						</li>
-						<li>
-							<a href="{{path('accueil')}}">sous-menu 3</a>
-						</li>
-						<li>
-							<a href="{{path('accueil')}}">sous-menu 4</a>
-						</li>
-						<li>
-							<a href="{{path('accueil')}}">sous-menu 5</a>
-						</li>
-					</ul>
-				</li>
-			</ul>
-			<!-- sidebar menu end-->
-		</div>
-	</aside>
-	<!--sidebar end-->
-	{# {% endblock %}#}
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="sub-menu">
+						<a {% if menuActif is defined and menuActif == 'Membres' %} class="active" {% endif %} href="javascript:;">
+							<i class="fa fa-user-md"></i>
+							<span>Membres</span>
+						</a>
+						<ul class="sub">
+							<li>
+								<a href="{{path('app_membre_index')}}">Membres</a>
+							</li>
+						{% endif %}
+					</li>
+				</ul>
+			</li>
+			<li class="sub-menu">
+				<a {% if menuActif is defined and menuActif == 'Intervenants' %} class="active" {% endif %} href="javascript:;">
+					<i class="fa fa-smile-o"></i>
+					<span>Intervenants</span>
+				</a>
+				<ul class="sub">
+					<li>
+						<a href="{{path('accueil')}}">sous-menu 1</a>
+					</li>
+					<li>
+						<a href="{{path('accueil')}}">sous-menu 2</a>
+					</li>
+					<li>
+						<a href="{{path('accueil')}}">sous-menu 3</a>
+					</li>
+					<li>
+						<a href="{{path('accueil')}}">sous-menu 4</a>
+					</li>
+					<li>
+						<a href="{{path('accueil')}}">sous-menu 5</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<!-- sidebar menu end-->
+	</div>
+</aside>
+<!--sidebar end-->
+{# {% endblock %}#}
+
