@@ -4,6 +4,7 @@
 1. docker compose up
 2. docker exec -it symfony-apache bash
 3. composer install
+4. 
 4. php bin/console make:migration
 5. php bin/console doctrine:migrations:migrate
 ```
