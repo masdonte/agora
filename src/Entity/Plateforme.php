@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlateformeRepository;
+use App\Entity\Jeux;
+use App\Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Plateforme;
 use App\Form\PlateformeType;
+use App\Entity\Jeux;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Repository\PlateformeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,7 +20,7 @@ final class PlateformeController extends AbstractController
     public function index(PlateformeRepository $plateformeRepository): Response
     {
         return $this->render('plateforme/index.html.twig', [
-            'plateformes' => $plateformeRepository->findAll(),
+            'plateformes' => $plateformeRepository->findAll(), 'menuActif' => 'Jeux',
         ]);
     }
 
