@@ -24,9 +24,16 @@ class Genre
     #[ORM\OneToMany(targetEntity: Jeux::class, mappedBy: 'genre')]
     private Collection $jeuxes;
 
+    /**
+     * @var Collection<int, Jeux>
+     */
+    #[ORM\ManyToMany(targetEntity: Jeux::class, inversedBy: 'genres')]
+    private Collection $jeux;
+
     public function __construct()
     {
         $this->jeuxes = new ArrayCollection();
+        $this->jeux = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,5 +85,13 @@ class Genre
     public function __toString(): string
     {
         return $this->libGenre;
+    }
+
+    /**
+     * @return Collection<int, Jeux>
+     */
+    public function getJeux(): Collection
+    {
+        return $this->jeux;
     }
 }

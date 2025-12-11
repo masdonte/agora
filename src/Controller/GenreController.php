@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Genre;
 use App\Form\GenreType;
-use App\Entity\Jeu;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Repository\GenreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +18,7 @@ final class GenreController extends AbstractController
     public function index(GenreRepository $genreRepository): Response
     {
         return $this->render('genre/index.html.twig', [
-            'genres' => $genreRepository->findAll(), 'menuActif' => 'Jeux',
+            'genres' => $genreRepository->findAll(),
         ]);
     }
 
@@ -41,7 +39,6 @@ final class GenreController extends AbstractController
         return $this->render('genre/new.html.twig', [
             'genre' => $genre,
             'form' => $form,
-            'menuActif' => 'Jeux',
         ]);
     }
 
@@ -50,7 +47,6 @@ final class GenreController extends AbstractController
     {
         return $this->render('genre/show.html.twig', [
             'genre' => $genre,
-            'menuActif' => 'Jeux',
         ]);
     }
 
@@ -69,7 +65,6 @@ final class GenreController extends AbstractController
         return $this->render('genre/edit.html.twig', [
             'genre' => $genre,
             'form' => $form,
-            'menuActif' => 'Jeux',
         ]);
     }
 

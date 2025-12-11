@@ -36,6 +36,16 @@ class JeuxType extends AbstractType
                 'class' => Plateforme::class,
                 'choice_label' => 'lib',
             ])
+            ->add('genre', EntityType::class, [
+                'class' => Genre::class,
+                'choice_label' => 'libGenre',
+                'multiple' => true,
+                'expanded' => false,
+                'by_reference' => false,
+            ])
+        ;
+
+
         ;
     }
 
