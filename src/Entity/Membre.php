@@ -40,17 +40,17 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 14, nullable: true)]
     private ?string $telMembre = null;
 
-    #[ORM\Column(length: 60, nullable: true)]
+    #[ORM\Column(length: 100)]
     private ?string $mailMembre = null;
 
-    #[ORM\Column(length: 30, nullable: true)]
+    #[ORM\Column(length: 100)]
     private ?string $rueMembre = null;
 
-    #[ORM\Column(length: 25, nullable: true)]
+    #[ORM\Column(length: 20)]
     private ?string $cpMembre = null;
 
-    #[ORM\Column(length: 40, nullable: true)]
-    private ?string $vileMembre = null;
+    #[ORM\Column(length: 25)]
+    private ?string $villeMembre = null;
 
     public function getId(): ?int
     {
@@ -116,6 +116,17 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Ensure the session doesn't contain actual password hashes by CRC32C-hashing them, as supported since Symfony 7.3.
+     */
+    public function __serialize(): array
+    {
+        $data = (array) $this;
+        $data["\0".self::class."\0password"] = hash('crc32c', $this->password);
+
+        return $data;
+    }
+
     #[\Deprecated]
     public function eraseCredentials(): void
     {
@@ -163,7 +174,7 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->mailMembre;
     }
 
-    public function setMailMembre(?string $mailMembre): static
+    public function setMailMembre(string $mailMembre): static
     {
         $this->mailMembre = $mailMembre;
 
@@ -175,7 +186,7 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->rueMembre;
     }
 
-    public function setRueMembre(?string $rueMembre): static
+    public function setRueMembre(string $rueMembre): static
     {
         $this->rueMembre = $rueMembre;
 
@@ -187,21 +198,21 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->cpMembre;
     }
 
-    public function setCpMembre(?string $cpMembre): static
+    public function setCpMembre(string $cpMembre): static
     {
         $this->cpMembre = $cpMembre;
 
         return $this;
     }
 
-    public function getVileMembre(): ?string
+    public function getVilleMembre(): ?string
     {
-        return $this->vileMembre;
+        return $this->villeMembre;
     }
 
-    public function setVileMembre(?string $vileMembre): static
+    public function setVilleMembre(string $villeMembre): static
     {
-        $this->vileMembre = $vileMembre;
+        $this->villeMembre = $villeMembre;
 
         return $this;
     }

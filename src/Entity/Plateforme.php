@@ -15,18 +15,18 @@ class Plateforme
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $lib = null;
+    #[ORM\Column(length: 50)]
+    private ?string $libPlatforme = null;
 
     /**
-     * @var Collection<int, Jeux>
+     * @var Collection<int, JeuVideo>
      */
-    #[ORM\OneToMany(targetEntity: Jeux::class, mappedBy: 'plateforme')]
-    private Collection $jeuxes;
+    #[ORM\OneToMany(targetEntity: JeuVideo::class, mappedBy: 'plateforme')]
+    private Collection $jeuVideos;
 
     public function __construct()
     {
-        $this->jeuxes = new ArrayCollection();
+        $this->jeuVideos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -34,49 +34,45 @@ class Plateforme
         return $this->id;
     }
 
-    public function getLib(): ?string
+    public function getLibPlatforme(): ?string
     {
-        return $this->lib;
+        return $this->libPlatforme;
     }
 
-    public function setLib(string $lib): static
+    public function setLibPlatforme(string $libPlatforme): static
     {
-        $this->lib = $lib;
+        $this->libPlatforme = $libPlatforme;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Jeux>
+     * @return Collection<int, JeuVideo>
      */
-    public function getJeuxes(): Collection
+    public function getJeuVideos(): Collection
     {
-        return $this->jeuxes;
+        return $this->jeuVideos;
     }
 
-    public function addJeux(Jeux $jeux): static
+    public function addJeuVideo(JeuVideo $jeuVideo): static
     {
-        if (!$this->jeuxes->contains($jeux)) {
-            $this->jeuxes->add($jeux);
-            $jeux->setPlateforme($this);
+        if (!$this->jeuVideos->contains($jeuVideo)) {
+            $this->jeuVideos->add($jeuVideo);
+            $jeuVideo->setPlateforme($this);
         }
 
         return $this;
     }
 
-    public function removeJeux(Jeux $jeux): static
+    public function removeJeuVideo(JeuVideo $jeuVideo): static
     {
-        if ($this->jeuxes->removeElement($jeux)) {
+        if ($this->jeuVideos->removeElement($jeuVideo)) {
             // set the owning side to null (unless already changed)
-            if ($jeux->getPlateforme() === $this) {
-                $jeux->setPlateforme(null);
+            if ($jeuVideo->getPlateforme() === $this) {
+                $jeuVideo->setPlateforme(null);
             }
         }
 
         return $this;
-    }
-        public function __toString(): string
-    {
-        return $this->lib;
     }
 }

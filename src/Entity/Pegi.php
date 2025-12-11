@@ -16,85 +16,78 @@ class Pegi
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $Age = null;
+    private ?int $ageLimite = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Description = null;
+    #[ORM\Column(length: 100)]
+    private ?string $descPegi = null;
 
     /**
-     * @var Collection<int, Jeux>
+     * @var Collection<int, JeuVideo>
      */
-    #[ORM\OneToMany(targetEntity: Jeux::class, mappedBy: 'idPegi')]
-    private Collection $jeuxes;
+    #[ORM\OneToMany(targetEntity: JeuVideo::class, mappedBy: 'pegi')]
+    private Collection $jeuVideos;
 
     public function __construct()
     {
-        $this->jeuxes = new ArrayCollection();
+        $this->jeuVideos = new ArrayCollection();
     }
-
-
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAge(): ?int
+    public function getAgeLimite(): ?int
     {
-        return $this->Age;
+        return $this->ageLimite;
     }
 
-    public function setAge(int $Age): static
+    public function setAgeLimite(int $ageLimite): static
     {
-        $this->Age = $Age;
+        $this->ageLimite = $ageLimite;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescPegi(): ?string
     {
-        return $this->Description;
+        return $this->descPegi;
     }
 
-    public function setDescription(string $Description): static
+    public function setDescPegi(string $descPegi): static
     {
-        $this->Description = $Description;
+        $this->descPegi = $descPegi;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Jeux>
+     * @return Collection<int, JeuVideo>
      */
-    public function getJeuxes(): Collection
+    public function getJeuVideos(): Collection
     {
-        return $this->jeuxes;
+        return $this->jeuVideos;
     }
 
-    public function addJeux(Jeux $jeux): static
+    public function addJeuVideo(JeuVideo $jeuVideo): static
     {
-        if (!$this->jeuxes->contains($jeux)) {
-            $this->jeuxes->add($jeux);
-            $jeux->setIdPegi($this);
+        if (!$this->jeuVideos->contains($jeuVideo)) {
+            $this->jeuVideos->add($jeuVideo);
+            $jeuVideo->setPegi($this);
         }
 
         return $this;
     }
 
-    public function removeJeux(Jeux $jeux): static
+    public function removeJeuVideo(JeuVideo $jeuVideo): static
     {
-        if ($this->jeuxes->removeElement($jeux)) {
+        if ($this->jeuVideos->removeElement($jeuVideo)) {
             // set the owning side to null (unless already changed)
-            if ($jeux->getIdPegi() === $this) {
-                $jeux->setIdPegi(null);
+            if ($jeuVideo->getPegi() === $this) {
+                $jeuVideo->setPegi(null);
             }
         }
 
         return $this;
     }
-    public function __toString(): string
-    {
-        return $this->Age;
-    }
-
 }

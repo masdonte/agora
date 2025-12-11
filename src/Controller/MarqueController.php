@@ -75,7 +75,7 @@ final class MarqueController extends AbstractController
     #[Route('/{id}', name: 'app_marque_delete', methods: ['POST'])]
     public function delete(Request $request, Marque $marque, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $marque->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$marque->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($marque);
             $entityManager->flush();
         }

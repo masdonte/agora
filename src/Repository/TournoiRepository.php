@@ -40,4 +40,54 @@ class TournoiRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * @return array<int, array<string, mixed>>
+     */
+
+     public function findAllAfterThanDataSQL($datemax): array
+     {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT t.id, t.libelle, t.date, t.categorie_id, ct.libelle as categorie_libelle
+            FROM tournoi t
+            LEFT JOIN cat_tournois ct ON t.categorie_id = ct.id
+            WHERE t.date > :datemax
+            ORDER BY t.date ASC';
+        $stmt = $conn->prepare($sql);
+        $resultat = $stmt->executeQuery(['datemax' => $datemax]);
+
+        return $resultat->fetchAllAssociative();
+     }
+
+    /**
+     * @return Tournoi[]
+     */
+    public function findAllAfterThanDateDQL($datemax): array
+    {
+        return $this->createQueryBuilder('t')
+            ->leftJoin('t.categorie', 'c')
+            ->addSelect('c')
+            ->where('t.date > :datemax')
+            ->setParameter('datemax', $datemax)
+            ->orderBy('t.date', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Tournoi[]
+     */
+    public function findAllAfterThanDateQB($datemax): array
+    {
+        $qb = $this->createQueryBuilder('t');
+        
+        $qb->leftJoin('t.categorie', 'c')
+           ->addSelect('c')
+           ->where($qb->expr()->gt('t.date', ':datemax'))
+           ->setParameter('datemax', $datemax)
+           ->orderBy('t.date', 'ASC');
+        
+        return $qb->getQuery()->getResult();
+    }
 }

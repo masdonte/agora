@@ -19,6 +19,7 @@ final class PlateformeController extends AbstractController
     {
         return $this->render('plateforme/index.html.twig', [
             'plateformes' => $plateformeRepository->findAll(),
+            'menuActif' => 'Jeux',
         ]);
     }
 
@@ -39,6 +40,7 @@ final class PlateformeController extends AbstractController
         return $this->render('plateforme/new.html.twig', [
             'plateforme' => $plateforme,
             'form' => $form,
+            'menuActif' => 'Jeux',
         ]);
     }
 
@@ -47,6 +49,7 @@ final class PlateformeController extends AbstractController
     {
         return $this->render('plateforme/show.html.twig', [
             'plateforme' => $plateforme,
+            'menuActif' => 'Jeux',
         ]);
     }
 
@@ -65,6 +68,7 @@ final class PlateformeController extends AbstractController
         return $this->render('plateforme/edit.html.twig', [
             'plateforme' => $plateforme,
             'form' => $form,
+            'menuActif' => 'Jeux',
         ]);
     }
 

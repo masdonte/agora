@@ -17,10 +17,16 @@ class CatTournoisType extends AbstractType
             ->add('libelle')
             ->add('tournois', EntityType::class, [
                 'class' => Tournoi::class,
-                'choice_label' => 'libelle',
+                'choice_label' => function (Tournoi $tournoi) {
+                    return $tournoi->getLibelle() . ' (' . ($tournoi->getDate() ? $tournoi->getDate()->format('d/m/Y') : 'N/A') . ')';
+                },
                 'multiple' => true,
                 'expanded' => false,
-                'by_reference' => false,
+                'required' => false,
+                'query_builder' => function ($er) {
+                    return $er->createQueryBuilder('t')
+                        ->orderBy('t.libelle', 'ASC');
+                },
             ])
         ;
     }

@@ -19,14 +19,14 @@ class Genre
     private ?string $libGenre = null;
 
     /**
-     * @var Collection<int, Jeux>
+     * @var Collection<int, JeuVideo>
      */
-    #[ORM\OneToMany(targetEntity: Jeux::class, mappedBy: 'genre')]
-    private Collection $jeuxes;
+    #[ORM\OneToMany(targetEntity: JeuVideo::class, mappedBy: 'genre')]
+    private Collection $jeuVideos;
 
     public function __construct()
     {
-        $this->jeuxes = new ArrayCollection();
+        $this->jeuVideos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -47,36 +47,32 @@ class Genre
     }
 
     /**
-     * @return Collection<int, Jeux>
+     * @return Collection<int, JeuVideo>
      */
-    public function getJeuxes(): Collection
+    public function getJeuVideos(): Collection
     {
-        return $this->jeuxes;
+        return $this->jeuVideos;
     }
 
-    public function addJeux(Jeux $jeux): static
+    public function addJeuVideo(JeuVideo $jeuVideo): static
     {
-        if (!$this->jeuxes->contains($jeux)) {
-            $this->jeuxes->add($jeux);
-            $jeux->setGenre($this);
+        if (!$this->jeuVideos->contains($jeuVideo)) {
+            $this->jeuVideos->add($jeuVideo);
+            $jeuVideo->setGenre($this);
         }
 
         return $this;
     }
 
-    public function removeJeux(Jeux $jeux): static
+    public function removeJeuVideo(JeuVideo $jeuVideo): static
     {
-        if ($this->jeuxes->removeElement($jeux)) {
+        if ($this->jeuVideos->removeElement($jeuVideo)) {
             // set the owning side to null (unless already changed)
-            if ($jeux->getGenre() === $this) {
-                $jeux->setGenre(null);
+            if ($jeuVideo->getGenre() === $this) {
+                $jeuVideo->setGenre(null);
             }
         }
 
         return $this;
-    }
-    public function __toString(): string
-    {
-        return $this->libGenre;
     }
 }

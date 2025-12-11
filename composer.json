@@ -1,37 +1,31 @@
 {
+    "name": "symfony/skeleton",
     "type": "project",
     "license": "proprietary",
+    "description": "A minimal Symfony project recommended to create bare bones applications",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/dbal": "^3.10.3",
+        "doctrine/dbal": "^3.10.4",
         "doctrine/doctrine-bundle": "^2.18.1",
-        "doctrine/doctrine-migrations-bundle": "^3.7.0",
-        "doctrine/orm": "^3.5.7",
-        "symfony/asset": "7.2.*",
-        "symfony/console": "7.2.*",
-        "symfony/dotenv": "7.2.*",
+        "doctrine/doctrine-migrations-bundle": "^3.7",
+        "doctrine/orm": "^3.5.8",
+        "symfony/console": "7.3.*",
+        "symfony/dotenv": "7.3.*",
         "symfony/flex": "^2.10",
-        "symfony/form": "7.2.*",
-        "symfony/framework-bundle": "7.2.*",
-        "symfony/mailer": "7.2.*",
-        "symfony/runtime": "7.2.*",
-        "symfony/security-bundle": "7.2.*",
-        "symfony/security-csrf": "7.2.*",
-        "symfony/twig-bundle": "7.2.*",
-        "symfony/validator": "7.2.*",
-        "symfony/yaml": "7.2.*",
-        "symfonycasts/verify-email-bundle": "^1.17.4"
-    },
-    "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^4.3",
-        "fakerphp/faker": "^1.24",
-        "symfony/maker-bundle": "^1.64",
-        "symfony/stopwatch": "7.2.*",
-        "symfony/web-profiler-bundle": "7.2.*"
+        "symfony/form": "7.3.*",
+        "symfony/framework-bundle": "7.3.*",
+        "symfony/runtime": "7.3.*",
+        "symfony/security-bundle": "7.3.*",
+        "symfony/security-csrf": "7.3.*",
+        "symfony/twig-bundle": "7.3.*",
+        "symfony/validator": "7.3.*",
+        "symfony/yaml": "7.3.*",
+        "twig/extra-bundle": "^2.12|^3.22.1",
+        "twig/twig": "^3.22.1"
     },
     "config": {
         "allow-plugins": {
@@ -80,7 +74,13 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.2.*"
+            "require": "7.3.*"
         }
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^4.3.1",
+        "fakerphp/faker": "^1.24.1",
+        "symfony/maker-bundle": "^1.65.1",
+        "symfony/web-profiler-bundle": "7.3.*"
     }
 }

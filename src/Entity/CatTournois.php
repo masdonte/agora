@@ -15,7 +15,7 @@ class CatTournois
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $libelle = null;
 
     /**
@@ -76,7 +76,7 @@ class CatTournois
         return $this;
     }
 
-    public function __toString(): string 
+    public function _toString(): string
     {
         return $this->libelle;
     }

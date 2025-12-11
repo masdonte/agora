@@ -3,7 +3,7 @@ services:
     build:
       context: ./docker/php
       dockerfile: Dockerfile
-    container_name: symfony-apache
+    container_name: symfony
     ports:
       - "8080:80"
     volumes:
@@ -14,7 +14,7 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: mysql_8
+    container_name: mysql14
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: symfony
@@ -27,7 +27,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
+    container_name: phpmyadmin2
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: rootpassword

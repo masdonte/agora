@@ -19,6 +19,7 @@ final class PegiController extends AbstractController
     {
         return $this->render('pegi/index.html.twig', [
             'pegis' => $pegiRepository->findAll(),
+            'menuActif' => 'Jeux',
         ]);
     }
 
@@ -39,6 +40,7 @@ final class PegiController extends AbstractController
         return $this->render('pegi/new.html.twig', [
             'pegi' => $pegi,
             'form' => $form,
+            'menuActif' => 'Jeux',
         ]);
     }
 
@@ -47,6 +49,7 @@ final class PegiController extends AbstractController
     {
         return $this->render('pegi/show.html.twig', [
             'pegi' => $pegi,
+            'menuActif' => 'Jeux',
         ]);
     }
 
@@ -65,6 +68,7 @@ final class PegiController extends AbstractController
         return $this->render('pegi/edit.html.twig', [
             'pegi' => $pegi,
             'form' => $form,
+            'menuActif' => 'Jeux',
         ]);
     }
 

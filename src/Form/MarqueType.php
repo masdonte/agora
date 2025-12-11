@@ -12,7 +12,7 @@ class MarqueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomMarque')
+            ->add('libMarque')
         ;
     }
 

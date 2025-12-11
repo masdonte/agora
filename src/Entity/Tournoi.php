@@ -15,7 +15,7 @@ class Tournoi
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 40)]
     private ?string $libelle = null;
 
     #[ORM\Column]
@@ -113,5 +113,10 @@ class Tournoi
         $this->participants->removeElement($participant);
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->libelle;
     }
 }

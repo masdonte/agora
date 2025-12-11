@@ -15,18 +15,18 @@ class Marque
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nomMarque = null;
+    #[ORM\Column(length: 50)]
+    private ?string $libMarque = null;
 
     /**
-     * @var Collection<int, Jeux>
+     * @var Collection<int, JeuVideo>
      */
-    #[ORM\OneToMany(targetEntity: Jeux::class, mappedBy: 'marque')]
-    private Collection $jeuxes;
+    #[ORM\OneToMany(targetEntity: JeuVideo::class, mappedBy: 'marque')]
+    private Collection $jeuVideos;
 
     public function __construct()
     {
-        $this->jeuxes = new ArrayCollection();
+        $this->jeuVideos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -34,49 +34,45 @@ class Marque
         return $this->id;
     }
 
-    public function getNomMarque(): ?string
+    public function getLibMarque(): ?string
     {
-        return $this->nomMarque;
+        return $this->libMarque;
     }
 
-    public function setNomMarque(string $nomMarque): static
+    public function setLibMarque(string $libMarque): static
     {
-        $this->nomMarque = $nomMarque;
+        $this->libMarque = $libMarque;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Jeux>
+     * @return Collection<int, JeuVideo>
      */
-    public function getJeuxes(): Collection
+    public function getJeuVideos(): Collection
     {
-        return $this->jeuxes;
+        return $this->jeuVideos;
     }
 
-    public function addJeux(Jeux $jeux): static
+    public function addJeuVideo(JeuVideo $jeuVideo): static
     {
-        if (!$this->jeuxes->contains($jeux)) {
-            $this->jeuxes->add($jeux);
-            $jeux->setMarque($this);
+        if (!$this->jeuVideos->contains($jeuVideo)) {
+            $this->jeuVideos->add($jeuVideo);
+            $jeuVideo->setMarque($this);
         }
 
         return $this;
     }
 
-    public function removeJeux(Jeux $jeux): static
+    public function removeJeuVideo(JeuVideo $jeuVideo): static
     {
-        if ($this->jeuxes->removeElement($jeux)) {
+        if ($this->jeuVideos->removeElement($jeuVideo)) {
             // set the owning side to null (unless already changed)
-            if ($jeux->getMarque() === $this) {
-                $jeux->setMarque(null);
+            if ($jeuVideo->getMarque() === $this) {
+                $jeuVideo->setMarque(null);
             }
         }
 
         return $this;
-    }
-        public function __toString(): string
-    {
-        return $this->nomMarque;
     }
 }

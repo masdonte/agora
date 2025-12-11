@@ -9,7 +9,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
 class ParticipantType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -21,7 +20,7 @@ class ParticipantType extends AbstractType
             ->add('email')
             ->add('tournois', EntityType::class, [
                 'class' => Tournoi::class,
-                'choice_label' => 'libelle',
+                'choice_label' => 'id',
                 'multiple' => true,
             ])
         ;

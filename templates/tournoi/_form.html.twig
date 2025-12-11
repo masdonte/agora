@@ -1,4 +1,21 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_row(form.libelle) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.dateCreation) }}
+    {{ form_row(form.categorie) }}
+    <div class="form-group">
+        {{ form_label(form.participants, 'Participants') }}
+        {{ form_widget(form.participants, {
+            'attr': {
+                'class': 'form-control',
+                'size': '8',
+                'style': 'min-height: 200px;'
+            }
+        }) }}
+        <small class="form-text text-muted">
+            <i class="fa fa-info-circle"></i> Maintenez <kbd>Ctrl</kbd> (ou <kbd>Cmd</kbd> sur Mac) pour sélectionner plusieurs participants
+        </small>
+        {{ form_errors(form.participants) }}
+    </div>
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
