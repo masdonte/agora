@@ -30,20 +30,20 @@
 			<link href="{{ asset('assets/css/styleAgora.css') }}" rel="stylesheet">
 		{% endblock %}
 		<!-- =======================================================
-												Template Name: Dashio
-												Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-												Author: TemplateMag.com
-												License: https://templatemag.com/license/
-												======================================================= -->
+																										Template Name: Dashio
+																										Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+																										Author: TemplateMag.com
+																										License: https://templatemag.com/license/
+																										======================================================= -->
 	</head>
 	<body>
 		<section id="container">
 			<!--
-																		**************************************************************************************
-																		********************************************************************
-																		TOP BAR CONTENT & NOTIFICATIONS
-																		**************************************************************************************
-																		********************************************************************* -->
+																																							**************************************************************************************
+																																							********************************************************************
+																																							TOP BAR CONTENT & NOTIFICATIONS
+																																							**************************************************************************************
+																																							********************************************************************* -->
 			<!--header start-->
 				<header class="header black-bg"> <div class="sidebar-toggle-box">
 					<div class="fa fa-bars tooltips" data-placement="right" data-original- title="Toggle Navigation"></div>
@@ -72,21 +72,21 @@
 			</header>
 			<!--header end-->
 			<!-- **************************************************************************************
-													 ********************************************************************
-													 MAIN SIDEBAR MENU
-													 **************************************************************************************
-													 ********************************************************************* -->
+																																		 ********************************************************************
+																																		 MAIN SIDEBAR MENU
+																																		 **************************************************************************************
+																																		 ********************************************************************* -->
 			{% block menu %}
 				{% if (app.session.has('idUtilisateur') ) %}
 					{{ include('menu.html.twig') }}
 				{% endif %}
 			{% endblock %}
 			<!--
-																		**************************************************************************************
-																		********************************************************************
-																		MAIN CONTENT
-																		**************************************************************************************
-																		********************************************************************* -->
+																																							**************************************************************************************
+																																							********************************************************************
+																																							MAIN CONTENT
+																																							**************************************************************************************
+																																							********************************************************************* -->
 			<section id="main-content">
 				<section class="wrapper"> {% block central %}{% endblock %}
 					</section>
@@ -97,14 +97,14 @@
 			<!-- js placed at the end of the document so the pages load faster -->
 			<script src="{{ asset('assets/lib/jquery/jquery.min.js') }}"></script>
 			<!-- pour
-																		dérouler menu -->
+																																							dérouler menu -->
 			<script src="{{ asset('assets/lib/bootstrap/js/bootstrap.min.js') }}"></script>
 			<script class="include" type="text/javascript" src="{{ asset('assets/lib/jquery.dcjqaccordion.2.7.js') }}"></script>
 			<!-- pour dérouler menu
-																		-->
+																																							-->
 			<script src="{{ asset('assets/lib/jquery.scrollTo.min.js') }}"></script>
 			<!-- pour
-																		dérouler menu -->
+																																							dérouler menu -->
 			<!--common script for all pages-->
 			<script src="{{ asset('assets/lib/common-scripts.js') }}"></script>
 			<!--script pour le calendrier-->
@@ -117,11 +117,11 @@
 	</html>
 
 	<!--
-					**************************************************************************************
-					********************************************************************
-					MAIN SIDEBAR MENU
-					**************************************************************************************
-					********************************************************************* -->
+												**************************************************************************************
+												********************************************************************
+												MAIN SIDEBAR MENU
+												**************************************************************************************
+												********************************************************************* -->
 	<!--sidebar start-->
 	<aside>
 		<div
@@ -169,6 +169,18 @@
 						</li>
 						<li>
 							<a href="{{path('app_participant_index')}}">Participants</a>
+						</li>
+						<li>
+							<a href="{{path('app_stat_sql_tournoi')}}">Dashboard tournois (SQL)</a>
+						</li>
+						<li>
+							<a href="{{path('app_stat_dql_tournoi')}}">Dashboord tournois (DQL)</a>
+						</li>
+						<li>
+							<a href="{{path('app_stat_qb_tournoi')}}">Dashboord tournois (QB)</a>
+						</li>
+						<li>
+							<a href="{{path('app_stat_tournoi_index')}}">Dashboord tournois chart.js</a>
 						</li>
 					</ul>
 				</li>
