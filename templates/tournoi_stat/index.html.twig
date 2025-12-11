@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="col-sm-8">
+		<section class="panel">
+			<div class="chat-room-head">
+				<h3>
+					<i class="fa fa-angle-right"></i>
+					Statistiques des tournois</h3>
+			</div>
+			<div class="panel-body">
+
+				<form method="get" action="{{ path('app_stat_tournoi_index') }}">
+					<label for="categorie">Filtrer par catégorie :</label>
+					<select name="categorie" id="categorie" onchange="this.form.submit()">
+						<option value="">Toutes</option>
+						{% for cat in categories %}
+							<option value="{{ cat.id }}" {% if selectedCategorie == cat.id %} selected {% endif %}>
+								{{ cat.libelle }}
+							</option>
+						{% endfor %}
+					</select>
+				</form>
+
+				<table class="table table-striped table-advance table-hover">
+					<thead>
+						<tr class="tableau-entete">
+							<th>
+								<i class="fa fa-gamepad"></i>Tournoi</th>
+							<th>
+								<i class="fa fa-list"></i>Catégorie</th>
+							<th>
+								<i class="fa fa-hashtag"></i>nb participants</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for t in stats %}
+							<tr>
+								<td>{{ t.libelle }}</td>
+								<td>{{ t.categorie }}</td>
+								<td>{{ t.nbParticipants }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<h2>Nombre de participants par tournoi</h2>
+				<canvas id="chartParticipants" width="600" height="400"></canvas>
+				<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+				<script>
+					const ctx = document.getElementById('chartParticipants').getContext('2d');
+const chart = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: [{% for t in stats %}'{{ t.libelle }}',{% endfor %}],
+datasets: [
+{
+label: 'Nombre de participants',
+data: [{% for t in stats %}{{ t.nbParticipants }},{% endfor %}],
+backgroundColor: 'rgba(54, 162, 235, 0.6)',
+borderColor: 'rgba(54, 162, 235, 1)',
+borderWidth: 1
+}
+]
+},
+options: {
+scales: {
+y: {
+beginAtZero: true,
+precision: 0
+}
+}
+}
+});
+				</script>
+			</div>
+			<!-- fin div panel-body-->
+		</section>
+		<!-- fin section tournois-->
+	</div>
+	<!--fin div col-sm-8-->
+{% endblock %}
