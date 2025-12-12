@@ -22,17 +22,10 @@ class Genre
      * @var Collection<int, Jeux>
      */
     #[ORM\OneToMany(targetEntity: Jeux::class, mappedBy: 'genre')]
-    private Collection $jeuxes;
-
-    /**
-     * @var Collection<int, Jeux>
-     */
-    #[ORM\ManyToMany(targetEntity: Jeux::class, inversedBy: 'genres')]
     private Collection $jeux;
 
     public function __construct()
     {
-        $this->jeuxes = new ArrayCollection();
         $this->jeux = new ArrayCollection();
     }
 
@@ -56,15 +49,15 @@ class Genre
     /**
      * @return Collection<int, Jeux>
      */
-    public function getJeuxes(): Collection
+    public function getJeux(): Collection
     {
-        return $this->jeuxes;
+        return $this->jeux;
     }
 
     public function addJeux(Jeux $jeux): static
     {
-        if (!$this->jeuxes->contains($jeux)) {
-            $this->jeuxes->add($jeux);
+        if (!$this->jeux->contains($jeux)) {
+            $this->jeux->add($jeux);
             $jeux->setGenre($this);
         }
 
@@ -73,7 +66,7 @@ class Genre
 
     public function removeJeux(Jeux $jeux): static
     {
-        if ($this->jeuxes->removeElement($jeux)) {
+        if ($this->jeux->removeElement($jeux)) {
             // set the owning side to null (unless already changed)
             if ($jeux->getGenre() === $this) {
                 $jeux->setGenre(null);
@@ -81,17 +74,5 @@ class Genre
         }
 
         return $this;
-    }
-    public function __toString(): string
-    {
-        return $this->libGenre;
-    }
-
-    /**
-     * @return Collection<int, Jeux>
-     */
-    public function getJeux(): Collection
-    {
-        return $this->jeux;
     }
 }
