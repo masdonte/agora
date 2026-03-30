@@ -26,9 +26,7 @@ class MembreFixtures extends Fixture
             $membre->setTelMembre(substr($this->faker->e164PhoneNumber, 2, 10));
             $membre->setMailMembre(sprintf('userdemo%d@exemple.com', $i));
             $membre->setPassword($this->passwordHasher->hashPassword($membre, 'userdemo'));
-            $membre->setRueMembre($this->faker->streetAddress);
             $membre->setVilleMembre($this->faker->city);
-            $membre->setCpMembre($this->faker->numberBetween(111111, 999999));
             $manager->persist($membre);
         }
         $manager->flush();
