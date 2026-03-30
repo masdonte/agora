@@ -9,7 +9,6 @@ security:
             entity:
                 class: App\Entity\Membre
                 property: username
-        # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -23,9 +22,6 @@ security:
                 # where to redirect after logout
                 target: app_login
 
-                # where to redirect after logout
-                # target: app_any_route
-
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -35,8 +31,17 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # Un utilisateur anonyme a uniquement accès à la page de connexion (route /login)
+        # correspond à /login/*
+        - { path: '^/login', roles: PUBLIC_ACCESS }
+
+        # Un administrateur a accès à la gestion des catégories
+        # correspond à /membres/* sauf si la règle précédente s'applique
+        - { path: '^/membre', roles: ROLE_ADMIN }
+
+        # Un utilisateur a accès à tout sauf la gestion des catégories
+        # correspond à /* sauf si la règle précédente s'applique
+        - { path: '^/*', roles: [ROLE_ADMIN, ROLE_USER] }
 
 when@test:
     security:
