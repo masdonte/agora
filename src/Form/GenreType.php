@@ -15,14 +15,7 @@ class GenreType extends AbstractType
     {
         $builder
             ->add('libGenre')
-            ->add('jeux', EntityType::class, [
-                'class' => Jeux::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-                'expanded' => false,
-                'by_reference' => false,
 
-            ])
         ;
     }
 

@@ -13,18 +13,15 @@
 			<link
 			href="{{ asset('assets/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/> <!--external css-->
 			<link href="{{ asset('assets/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet"/>
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-
 			<link
 			href="{{ asset('assets/lib/fullcalendar/bootstrap-fullcalendar.css') }}" rel="stylesheet"/>
 			<!--external css pour les dates dans la gestion des tournois-->
-			<link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstrap- fileupload/bootstrap-fileupload.css') }}"/>
-			<link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstrap- datepicker/css/datepicker.css') }}"/>
-			<link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstrap- datepicker/css/datepicker.css')}}"/>
-			<link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstrap- timepicker/compiled/timepicker.css') }}"/>
+			<link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstrapfileupload/bootstrap-fileupload.css') }}"/>
+			<link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstrapdatepicker/css/datepicker.css') }}"/>
+			<link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstrapdatepicker/css/datepicker.css')}}"/>
+			<link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstraptimepicker/compiled/timepicker.css') }}"/>
 			<link
-			rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstrap- datetimepicker/css/datetimepicker.css') }}"/>
-
+			rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstrapdatetimepicker/css/datetimepicker.css') }}"/>
 			<!-- Custom styles for this template -->
 			<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 			<link
@@ -33,67 +30,69 @@
 			<link href="{{ asset('assets/css/styleAgora.css') }}" rel="stylesheet">
 		{% endblock %}
 		<!-- =======================================================
-						Template Name: Dashio
-						Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-						Author: TemplateMag.com
-						License: https://templatemag.com/license/
-						======================================================= -->
+		 Template Name: Dashio
+		 Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+		 Author: TemplateMag.com
+		 License: https://templatemag.com/license/
+		 ======================================================= -->
 	</head>
 	<body>
 		<section id="container">
 			<!--
-									**************************************************************************************
-									********************************************************************
-									TOP BAR CONTENT & NOTIFICATIONS
-									**************************************************************************************
-									********************************************************************* -->
+			**************************************************************************************
+			********************************************************************
+			 TOP BAR CONTENT & NOTIFICATIONS
+			 
+			**************************************************************************************
+			********************************************************************* -->
 			<!--header start-->
 				<header class="header black-bg"> <div class="sidebar-toggle-box">
-					<div class="fa fa-bars tooltips" data-placement="right" data-original- title="Toggle Navigation"></div>
+					<div class="fa fa-bars tooltips" data-placement="right" data-originaltitle="Toggle Navigation"></div>
 				</div>
 				<!--logo start-->
-				<a href="index.php" class="logo">
+				<a href="{{ path('accueil') }}" class="logo">
 					<b>Ago<span>rA</span>
 					</b>
 				</a>
 				<!--logo end-->
-				<ul class="nav pull-right top-menu">
-					{# app.session.has() nouvelle syntaxe pour tester si une variable de
-															session existe #}
-					{# app.session.get() nouvelle syntaxe pour récupérer la valeur d'une
-															variable de session #}
-						{% if (app.session.has('idUtilisateur') ) %}
-							<a href="" class="userAgo"> {{ app.session.get('prenomUtilisateur') }}
-							{{
-app.session.get('nomUtilisateur') }}</a>
-						<li>
-							<a class="logout" href="{{ path('deconnexion') }}">Se
-																								déconnecter</a>
-						</li>
-					{% else %}
-						<li>
-							<a class="logout" href="{{ path('accueil') }}">Se connecter</a>
-						</li>
-					{% endif %}
-				</ul>
+				<div class="div class=" top-menu">
+					<ul class="nav pull-right top-menu">
+						{# app.session.has() nouvelle syntaxe pour tester si une variable de session existe #}
+						{# app.session.get() nouvelle syntaxe pour récupérer la valeur d'une variable de session #}
+							{% if (app.user) %}
+								<a href="" class="userAgo"> {{ app.user.prenomMembre }}
+								{{ app.user.nomMembre }}</a>
+							<li>
+								<a class="logout" href="{{ path('app_logout') }}">Déconnecter</a>
+							</li>
+						{% else %}
+							<li>
+								<a class="logout" href="{{ path('app_login') }}">Se connecter</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
 			</header>
 			<!--header end-->
 			<!--
-									**************************************************************************************
-									********************************************************************
-									MAIN SIDEBAR MENU
-									**************************************************************************************
-									********************************************************************* -->
+			**************************************************************************************
+			********************************************************************
+			 MAIN SIDEBAR MENU
+			 
+			**************************************************************************************
+			********************************************************************* -->
 			{% block menu %}
-				{{ include('menu.html.twig') }}
+				{% if (app.user) %}
+					{{ include('menu.html.twig') }}
+				{% endif %}
 			{% endblock %}
 			<!--
-									**************************************************************************************
-									
-									********************************************************************
-									MAIN CONTENT
-									**************************************************************************************
-									********************************************************************* -->
+			**************************************************************************************
+			********************************************************************
+			 MAIN CONTENT
+			 
+			**************************************************************************************
+			********************************************************************* -->
 			<section id="main-content">
 				<section class="wrapper">
 					<div class="container-fluid"> {% block central %}{% endblock %}{% block body %}{% endblock %}
@@ -105,19 +104,19 @@ app.session.get('nomUtilisateur') }}</a>
 				<!--footer start-->
 					<footer class="site-footer"> <div class="text-center">
 						<p>Crée par Logma avec le template bootstrap Dashio :
-																					&copy; Copyrights
+							 &copy; Copyrights
 							<strong>Dashio</strong>. All Rights Reserved
 						</p>
 						<div
 							class="credits">
 							<!--
-																					You are NOT allowed to delete the credit link to TemplateMag with free
-																					version.
-																					You can delete the credit link only if you bought the pro version.
-																					Buy the pro version with working PHP/AJAX contact form:
-																					https://templatemag.com/dashio-bootstrap-admin-template/
-																					Licensing information: https://templatemag.com/license/
-																					-->
+							 You are NOT allowed to delete the credit link to TemplateMag with free 
+							version.
+							 You can delete the credit link only if you bought the pro version.
+							 Buy the pro version with working PHP/AJAX contact form: 
+							https://templatemag.com/dashio-bootstrap-admin-template/
+							 Licensing information: https://templatemag.com/license/
+							 -->
 							Created with Dashio template by
 							<a href="https://templatemag.com/">TemplateMag</a>
 						</div>
@@ -130,15 +129,15 @@ app.session.get('nomUtilisateur') }}</a>
 			</section>
 			<!-- js placed at the end of the document so the pages load faster -->
 			<script src="{{ asset('assets/lib/jquery/jquery.min.js') }}"></script>
-			<!-- pour
-									dérouler menu -->
+			<!-- pour 
+			dérouler menu -->
 			<script src="{{ asset('assets/lib/bootstrap/js/bootstrap.min.js') }}"></script>
 			<script class="include" type="text/javascript" src="{{ asset('assets/lib/jquery.dcjqaccordion.2.7.js') }}"></script>
-			<!-- pour dérouler menu
-									-->
+			<!-- pour dérouler menu 
+			-->
 			<script src="{{ asset('assets/lib/jquery.scrollTo.min.js') }}"></script>
-			<!-- pour
-									dérouler menu -->
+			<!-- pour 
+			dérouler menu -->
 			<!--common script for all pages-->
 			<script src="{{ asset('assets/lib/common-scripts.js') }}"></script>
 			<!--script pour le calendrier-->
@@ -149,5 +148,3 @@ app.session.get('nomUtilisateur') }}</a>
 			<script src="{{ asset('assets/libAgora/sha512.js') }}"></script>
 		</body>
 	</html>
-
-
