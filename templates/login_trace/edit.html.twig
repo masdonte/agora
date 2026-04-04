@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit LoginTrace{% endblock %}
+
+{% block body %}
+    <h1>Edit LoginTrace</h1>
+
+    {{ include('login_trace/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_login_trace_index') }}">back to list</a>
+
+    {{ include('login_trace/_delete_form.html.twig') }}
+{% endblock %}

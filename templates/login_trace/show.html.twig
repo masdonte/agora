@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LoginTrace index
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des traces de connexion</h1>
+
+	<div class="panel-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Identifiant</th>
+					<th>Adresse IP</th>
+					<th>Succès</th>
+					<th>Date</th>
+					<th>Message d’erreur</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for login_trace in login_traces %}
+					<tr>
+						<td>{{ login_trace.id }}</td>
+						<td>{{ login_trace.username }}</td>
+						<td>{{ login_trace.ipAddress }}</td>
+						<td>{{ login_trace.success ? 'Oui' : 'Non' }}</td>
+						<td>{{ login_trace.loggedAt ? login_trace.loggedAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>{{ login_trace.message }}</td>
+						<td>
+							<a href="{{ path('app_login_trace_show', {'id': login_trace.id}) }}">Voir</a>
+							<a href="{{ path('app_login_trace_edit', {'id': login_trace.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">Aucune trace enregistrée en base de données</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_login_trace_new') }}" class="btn btn-primary">Créer une nouvelle trace</a>
+	</div>
+{% endblock %}
