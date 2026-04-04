@@ -25,6 +25,10 @@ services:
      arguments:
         $urlGenerator: "@router"
         $em: "@doctrine.orm.entity_manager"
-
+        
+        #declaration du listener des deconnexions pour leur historisation
+    App\EventListener\LogoutListener:
+        tags:
+         - { name: kernel.event_listener, event: Symfony\Component\Security\Http\Event\LogoutEvent, method: onLogout }
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
