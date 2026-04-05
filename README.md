@@ -26,6 +26,8 @@ root : root
 password : rootpassword
 
 ### MDP de tout les comptes par defaut : 
+compte admin : 
+admin
 userdemo
 ```
 
