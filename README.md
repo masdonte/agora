@@ -6,6 +6,8 @@
 3. composer install
 4. php bin/console make:migration
 5. php bin/console doctrine:migrations:migrate
+pour mettre de fausse donnee : 
+6. php bin/console doctrine:fixtures:load --group=MembreFixtures --append
 ```
 
 ### Accéder à la page
@@ -16,7 +18,7 @@ http://localhost:8080/index.php
 
 ### Accéder à phpmyadmin 
 ```
-http://localhost:8081/
+http://ip de la vm/phpmyadmin
 username : user
 password : password
 
