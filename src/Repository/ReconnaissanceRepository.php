@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Reconnaissance;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+// Ce repository gère les opérations de base de données pour l'entité Reconnaissance
 /**
  * @extends ServiceEntityRepository<Reconnaissance>
  */

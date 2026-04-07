@@ -29,6 +29,7 @@ endif %}
  </ul>
  </li>
 
+ {% if is_granted('ROLE_ADMIN') %}
  <li class="sub-menu">
  <a
  {% if menuActif is defined and menuActif == 'Reconnaissance' %} class="active" {% endif %}
@@ -37,6 +38,7 @@ endif %}
   <span>Reconnaissance</span>
  </a>
  </li>
+ {% endif %}
 
  <li class="sub-menu">
  <a
