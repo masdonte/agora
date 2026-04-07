@@ -17,8 +17,10 @@ final class ReconnaissanceController extends AbstractController
     #[Route(name: 'app_reconnaissance_index', methods: ['GET'])]
     public function index(ReconnaissanceRepository $reconnaissanceRepository): Response
     {
+        // Liste toutes les reconnaissances et active le lien Reconnaissance dans le menu
         return $this->render('reconnaissance/index.html.twig', [
             'reconnaissances' => $reconnaissanceRepository->findAll(),
+            'menuActif' => 'Reconnaissance',
         ]);
     }
 
@@ -71,7 +73,7 @@ final class ReconnaissanceController extends AbstractController
     #[Route('/{id}', name: 'app_reconnaissance_delete', methods: ['POST'])]
     public function delete(Request $request, Reconnaissance $reconnaissance, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$reconnaissance->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $reconnaissance->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($reconnaissance);
             $entityManager->flush();
         }

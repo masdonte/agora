@@ -31,6 +31,15 @@ endif %}
 
  <li class="sub-menu">
  <a
+ {% if menuActif is defined and menuActif == 'Reconnaissance' %} class="active" {% endif %}
+ href="{{ path('app_reconnaissance_index') }}">
+  <i class="fa fa-certificate"></i>
+  <span>Reconnaissance</span>
+ </a>
+ </li>
+
+ <li class="sub-menu">
+ <a
  {% if menuActif is defined and menuActif == 'Tournois' %} class="active" {% endif %}
  href="javascript:;" ><i class="fa fa-users"></i>
   <span>Tournois</span>
@@ -111,6 +120,7 @@ class="active" {% endif %}
  </ul>
  </li>
  </ul>
+
  <!-- sidebar menu end-->
  </div>
  </aside>
