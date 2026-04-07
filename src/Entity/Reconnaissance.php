@@ -19,9 +19,11 @@ class Reconnaissance
 
     #[ORM\Column(length: 255)]
     private ?string $Niveau = null;
+    // Ici le lien avec la table CatTournois 
 
     #[ORM\ManyToOne(inversedBy: 'reconnaissances')]
     private ?CatTournois $reconnaissance_tournoi = null;
+
     // Get qui sert à récupérer les données de l'entité reconnaissance et set qui sert à les modifier
 
     public function getId(): ?int

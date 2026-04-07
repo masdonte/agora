@@ -26,6 +26,8 @@ final class ReconnaissanceController extends AbstractController
             'menuActif' => 'Reconnaissance',
         ]);
     }
+    // La route pour créer un formulaire de reconnaissance 
+
 
     #[Route('/new', name: 'app_reconnaissance_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -46,6 +48,7 @@ final class ReconnaissanceController extends AbstractController
             'form' => $form,
         ]);
     }
+    // La route pour afficher les reconnaissances 
 
     #[Route('/{id}', name: 'app_reconnaissance_show', methods: ['GET'])]
     public function show(Reconnaissance $reconnaissance): Response
@@ -54,7 +57,7 @@ final class ReconnaissanceController extends AbstractController
             'reconnaissance' => $reconnaissance,
         ]);
     }
-
+    // La route pour éditer les reconnaissances et modifier les données de l'entité reconnaissance
     #[Route('/{id}/edit', name: 'app_reconnaissance_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reconnaissance $reconnaissance, EntityManagerInterface $entityManager): Response
     {
@@ -72,6 +75,7 @@ final class ReconnaissanceController extends AbstractController
             'form' => $form,
         ]);
     }
+    // La route pour supprimer les reconnaissances
 
     #[Route('/{id}', name: 'app_reconnaissance_delete', methods: ['POST'])]
     public function delete(Request $request, Reconnaissance $reconnaissance, EntityManagerInterface $entityManager): Response

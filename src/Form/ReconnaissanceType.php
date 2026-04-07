@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+// Les formulaires de la reconnaissance pour créer et ajouter des reconnaissances 
 
 class ReconnaissanceType extends AbstractType
 {
