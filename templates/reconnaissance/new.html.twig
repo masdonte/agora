@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reconnaissance{% endblock %}
+
+{% block body %}
+    <h1>Create new Reconnaissance</h1>
+
+    {{ include('reconnaissance/_form.html.twig') }}
+
+    <a href="{{ path('app_reconnaissance_index') }}">back to list</a>
+{% endblock %}

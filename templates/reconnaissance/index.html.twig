@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reconnaissance index{% endblock %}
+
+{% block body %}
+    <h1>Reconnaissance index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Niveau</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reconnaissance in reconnaissances %}
+            <tr>
+                <td>{{ reconnaissance.id }}</td>
+                <td>{{ reconnaissance.Nom }}</td>
+                <td>{{ reconnaissance.Niveau }}</td>
+                <td>
+                    <a href="{{ path('app_reconnaissance_show', {'id': reconnaissance.id}) }}">show</a>
+                    <a href="{{ path('app_reconnaissance_edit', {'id': reconnaissance.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reconnaissance_new') }}">Create new</a>
+{% endblock %}

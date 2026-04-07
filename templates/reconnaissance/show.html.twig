@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reconnaissance{% endblock %}
+
+{% block body %}
+    <h1>Reconnaissance</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reconnaissance.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ reconnaissance.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ reconnaissance.Niveau }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reconnaissance_index') }}">back to list</a>
+
+    <a href="{{ path('app_reconnaissance_edit', {'id': reconnaissance.id}) }}">edit</a>
+
+    {{ include('reconnaissance/_delete_form.html.twig') }}
+{% endblock %}

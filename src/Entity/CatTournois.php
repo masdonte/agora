@@ -24,9 +24,16 @@ class CatTournois
     #[ORM\OneToMany(targetEntity: Tournoi::class, mappedBy: 'categorie')]
     private Collection $tournois;
 
+    /**
+     * @var Collection<int, Reconnaissance>
+     */
+    #[ORM\OneToMany(targetEntity: Reconnaissance::class, mappedBy: 'reconnaissance_tournoi')]
+    private Collection $reconnaissances;
+
     public function __construct()
     {
         $this->tournois = new ArrayCollection();
+        $this->reconnaissances = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -79,5 +86,35 @@ class CatTournois
     public function __toString(): string 
     {
         return $this->libelle;
+    }
+
+    /**
+     * @return Collection<int, Reconnaissance>
+     */
+    public function getReconnaissances(): Collection
+    {
+        return $this->reconnaissances;
+    }
+
+    public function addReconnaissance(Reconnaissance $reconnaissance): static
+    {
+        if (!$this->reconnaissances->contains($reconnaissance)) {
+            $this->reconnaissances->add($reconnaissance);
+            $reconnaissance->setReconnaissanceTournoi($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReconnaissance(Reconnaissance $reconnaissance): static
+    {
+        if ($this->reconnaissances->removeElement($reconnaissance)) {
+            // set the owning side to null (unless already changed)
+            if ($reconnaissance->getReconnaissanceTournoi() === $this) {
+                $reconnaissance->setReconnaissanceTournoi(null);
+            }
+        }
+
+        return $this;
     }
 }
