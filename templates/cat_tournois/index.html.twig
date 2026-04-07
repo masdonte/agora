@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{# Gérer les catégories de tournois #}
 {% block body %}
 	<!-- page start-->
 	<div class="col-sm-8">
@@ -22,7 +22,7 @@
 							<th>
 								<i class="fa fa-gamepad"></i>Tournois
 							</th>
-							// On affiche les tournois liés à chaque catégorie de tournois dans cette colonne
+
 							<th>
 								<i class="fa fa-gamepad"></i>Reconnaissances</th>
 						</tr>
@@ -67,7 +67,7 @@
 </table>
 <a href="{{ path('app_cat_tournois_new') }}">
 	<button class="btn btn-primary
-																			btn-xs">
+																												btn-xs">
 		<i class="fa fa-plus"></i>
 	</button>
 </a></div><!-- fin div panel-body--></section><!-- fin section tournois--></div><!--fin div col-sm-8-->{% endblock %}
