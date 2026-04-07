@@ -6,6 +6,7 @@ use App\Repository\ReconnaissanceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReconnaissanceRepository::class)]
+// Les entités de la classe reconnaissance 
 class Reconnaissance
 {
     #[ORM\Id]
@@ -21,6 +22,7 @@ class Reconnaissance
 
     #[ORM\ManyToOne(inversedBy: 'reconnaissances')]
     private ?CatTournois $reconnaissance_tournoi = null;
+    // Get qui sert à récupérer les données de l'entité reconnaissance et set qui sert à les modifier
 
     public function getId(): ?int
     {

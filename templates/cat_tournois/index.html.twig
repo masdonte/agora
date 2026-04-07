@@ -22,53 +22,52 @@
 							<th>
 								<i class="fa fa-gamepad"></i>Tournois
 							</th>
-							<th></th>
+							// On affiche les tournois liés à chaque catégorie de tournois dans cette colonne
+							<th>
+								<i class="fa fa-gamepad"></i>Reconnaissances</th>
 						</tr>
 					</thead>
-					<tbody>
-						{% for cat_tournoi in cat_tournois %}
-							<tr>
-								<td>{{ cat_tournoi.id }}</td>
-								<td>{{ cat_tournoi.libelle }}</td>
-								<td>
-									{% if cat_tournoi.tournois is not empty %}
-										{% for tournoi in cat_tournoi.tournois %}
-											<span class="badge bg-info text-dark">{{ tournoi.libelle }}</span>
-										{% endfor %}
-									{% else %}
-										<em>Aucun</em>
-									{% endif %}
-								</td>
-								<td>
-									<a href="{{ path('app_cat_tournois_show', {'id': cat_tournoi.id}) }}">
-										<button class="btn btn-primary btn-xs">
-											<i class="fa fa-tasks"></i>
-										</button>
-									</a>
-									<a href="{{ path('app_cat_tournois_edit', {'id': cat_tournoi.id}) }}">
-										<button class="btn btn-primary btn-xs">
-											<i class="fa fa-spencil"></i>
-										</button>
-									</a>
-								</td>
-							</tr>
-						{% else %}
-							<tr>
-								<td colspan="3">aucune catégorie de tournois enregistrée en base de données</td>
-							</tr>
+				</th<th>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for cat_tournoi in cat_tournois %}
+			<tr>
+				<td>{{ cat_tournoi.id }}</td>
+				<td>{{ cat_tournoi.libelle }}</td>
+				<td>
+					{% if cat_tournoi.tournois is not empty %}
+						{% for tournoi in cat_tournoi.tournois %}
+							<span class="badge bg-info text-dark">{{ tournoi.libelle }}</span>
 						{% endfor %}
-					</tbody>
-				</table>
-				<a href="{{ path('app_cat_tournois_new') }}">
-					<button class="btn btn-primary
-							btn-xs">
-						<i class="fa fa-plus"></i>
-					</button>
-				</a>
-			</div>
-			<!-- fin div panel-body-->
-		</section>
-		<!-- fin section tournois-->
-	</div>
-	<!--fin div col-sm-8-->
-{% endblock %}
+					{% else %}
+						<em>Aucun</em>
+					{% endif %}
+				</td>
+				<td>
+					<a href="{{ path('app_cat_tournois_show', {'id': cat_tournoi.id}) }}">
+						<button class="btn btn-primary btn-xs">
+							<i class="fa fa-tasks"></i>
+						</button>
+					</a>
+					<a href="{{ path('app_cat_tournois_edit', {'id': cat_tournoi.id}) }}">
+						<button class="btn btn-primary btn-xs">
+							<i class="fa fa-spencil"></i>
+						</button>
+					</a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="3">aucune catégorie de tournois enregistrée en base de données</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<a href="{{ path('app_cat_tournois_new') }}">
+	<button class="btn btn-primary
+																			btn-xs">
+		<i class="fa fa-plus"></i>
+	</button>
+</a></div><!-- fin div panel-body--></section><!-- fin section tournois--></div><!--fin div col-sm-8-->{% endblock %}

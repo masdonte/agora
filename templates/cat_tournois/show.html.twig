@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+﻿{% extends 'base.html.twig' %}
 
 {% block title %}CatTournois
 {% endblock %}
@@ -10,11 +10,11 @@
 			<div class="chat-room-head">
 				<h3>
 					<i class="fa fa-angle-right"></i>
-					Détails catégorie de tournois
+					DÃ©tails catÃ©gorie de tournois
 				</h3>
 			</div>
 			<div class="panel-body">
-				<h1>Catégorie Tournois</h1>
+				<h1>CatÃ©gorie Tournois</h1>
 				<table class="table table-striped table-advance table-hover">
 					<tbody>
 						<tr>
@@ -27,7 +27,7 @@
 						<tr>
 							<th class="tableau-entete">
 								<i class="fa fa-bookmark"></i>
-								Libellé
+								LibellÃ©
 							</th>
 							<td>{{ cat_tournoi.libelle }}</td>
 						</tr>
@@ -61,24 +61,25 @@
 					<table class="table table-striped table-advance table-hover">
 						<thead>
 							<tr>
-								<th>Nom</th>
-								<th>Niveau</th>
-								<th>Actions</th>
-							</tr>
+								                                                           <th>Nom</th>
+                                                           <th>Niveau</th>
+                                                           {% if is_granted('ROLE_ADMIN') %}
+                                                               <th>Actions</th>
+                                                           {% endif %}
+                                                   </tr>
 						</thead>
 						<tbody>
 							{% for reconnaissance in cat_tournoi.reconnaissances %}
 								<tr>
-									<td>{{ reconnaissance.Nom }}</td>
-									<td>{{ reconnaissance.Niveau }}</td>
-									<td>
-										<a href="{{ path('app_reconnaissance_show', {'id': reconnaissance.id}) }}">Voir</a>
-										{% if is_granted('ROLE_ADMIN') %}
-											<a href="{{ path('app_reconnaissance_edit', {'id': reconnaissance.id}) }}">Modifier</a>
-											{{ include('reconnaissance/_delete_form.html.twig') }}
-										{% endif %}
-									</td>
-								</tr>
+									                                                                   <td>{{ reconnaissance.Nom }}</td>
+                                                                   <td>{{ reconnaissance.Niveau }}</td>
+                                                                   {% if is_granted('ROLE_ADMIN') %}
+                                                                       <td>
+                                                                           <a href="{{ path('app_reconnaissance_edit', {'id': reconnaissance.id}) }}">Modifier</a>
+                                                                           {{ include('reconnaissance/_delete_form.html.twig') }}
+                                                                       </td>
+                                                                   {% endif %}
+                                                           </tr>
 							{% endfor %}
 						</tbody>
 					</table>
@@ -92,3 +93,4 @@
 	</div>
 	<!--fin div col-sm-8-->
 {% endblock %}
+

@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+// Ce contrôleur gère les opérations CRUD pour l'entité Reconnaissance
+// Les routes sont définis pour chaque action comme new; index... 
+
 #[Route('/reconnaissance')]
 final class ReconnaissanceController extends AbstractController
 {
